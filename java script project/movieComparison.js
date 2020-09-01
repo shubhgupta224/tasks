@@ -53,7 +53,9 @@ const onSelectItem =async (item,summaryElement,side) =>{
 	if(response.data.Error){
 		return []; 
 	}
-	
+
+	summaryElement.innerHTML = itemDetails(response.data);
+
 	if(side === 'left'){
 		leftMovie =	response.data;
 	}else{
@@ -62,7 +64,6 @@ const onSelectItem =async (item,summaryElement,side) =>{
 	if(rightMovie && leftMovie){
 		itemComparison();
 	}
-	summaryElement.innerHTML = itemDetails(response.data);
 };
 
 const itemComparison = ()=> {
