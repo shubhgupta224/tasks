@@ -12,7 +12,7 @@ const commonAutoComplete={
 			return item.Title;
 		},
 		async fetchData(itemId) {
-			const response = await axios.get('http://www.omdbapi.com/',{
+			const response = await axios.get('https://www.omdbapi.com/',{
 			params:{
 				apikey:'4e3184ad',
 				s:itemId}
@@ -45,7 +45,7 @@ createAutoComplete({
 let leftMovie;
 let rightMovie;	
 const onSelectItem =async (item,summaryElement,side) =>{
-	const response = await axios.get('http://www.omdbapi.com/',{
+	const response = await axios.get('https://www.omdbapi.com/',{
 		params:{
 			apikey:'4e3184ad',
 			i:item.imdbID}
