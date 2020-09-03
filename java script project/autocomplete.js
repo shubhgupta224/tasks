@@ -6,8 +6,8 @@ const createAutoComplete = ({
 	fetchData
 	}) =>{
 
-autoCompleteWizard.innerHTML =`<label> <b> Search fors item</b> </label>
-					<input class='input' />
+autoCompleteWizard.innerHTML =`<label> <b> Search Movie Name</b> </label>
+					<input class='input' autofocus/>
 					<div class="dropdown">
 					<div class="dropdown-menu">
 						<div class="dropdown-content results">	</div>
