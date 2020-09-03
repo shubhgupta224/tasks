@@ -77,25 +77,36 @@ const itemComparison = ()=> {
   leftSideStats.forEach((leftStat, index) => {
     const rightStat = rightSideStats[index];
 
-    const leftSideValue = leftStat.dataset.value;
-    const rightSideValue = rightStat.dataset.value;
+    var leftSideValue = leftStat.dataset.value;
+    var rightSideValue = rightStat.dataset.value;
+	
+	if(leftSideValue =='NaN'){
+		leftSideValue =0;
+	}else if(rightSideValue =='NaN'){
+		rightSideValue=0;
+	}
 
-    if (rightSideValue > leftSideValue) {
+    if (parseFloat(rightSideValue) > parseFloat(leftSideValue)) {
       leftStat.classList.remove('is-primary');
       leftStat.classList.add('is-warning');
+	  
+	  rightStat.classList.add('is-primary');
+      rightStat.classList.remove('is-warning');
     } else {
       rightStat.classList.remove('is-primary');
       rightStat.classList.add('is-warning');
+	  
+	  leftStat.classList.add('is-primary');
+      leftStat.classList.remove('is-warning');
     }
   });
 };
 	
 
 const itemDetails = itemDtl => {
+	 
+	let dollars = (itemDtl.BoxOffice == undefined) ? 'N/A' : parseInt( itemDtl.BoxOffice.replace(/\$/g, '').replace(/,/g, ''));
 	
-	const dollars = parseInt(
-    itemDtl.BoxOffice.replace(/\$/g, '').replace(/,/g, '')
-  );
   const metascore = parseInt(itemDtl.Metascore);
   const imdbRating = parseFloat(itemDtl.imdbRating);
   const imdbVotes = parseInt(itemDtl.imdbVotes.replace(/,/g, ''));
@@ -116,7 +127,7 @@ const itemDetails = itemDtl => {
 	</figure>
 	<div class="media-content">
 	<div class="content">
-	<h1>${itemDtl.Title}</h1>
+	<h1>${itemDtl.Title} (${itemDtl.Year})</h1>
 	<h1>Genre: ${itemDtl.Genre}</h1>
 	<h4>Country: ${itemDtl.Country}</h4>
 	<p>Summary: ${itemDtl.Plot}</p>
@@ -128,7 +139,7 @@ const itemDetails = itemDtl => {
 		<p class="subtitle">Awards</p>
 	</article>	
 	<article data-value=${dollars} class="notification is-primary">
-		<p class="title">${itemDtl.BoxOffice}</p>
+		<p class="title">${(itemDtl.BoxOffice == undefined)? 'N/A': itemDtl.BoxOffice }</p>
 		<p class="subtitle">BoxOffice</p>
 	</article>
 	<article data-value=${metascore} class="notification is-primary">
